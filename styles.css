@@ -1,0 +1,167 @@
+#kick-transcription-overlay {
+    position: fixed;
+    z-index: 999999;
+    pointer-events: none;
+    font-family: Arial, Helvetica, sans-serif;
+    transition: all 0.3s ease;
+}
+
+#kick-transcription-overlay .transcription-text {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.5;
+    text-align: center;
+    opacity: 0.8;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.2s ease;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#kick-transcription-overlay .latency-indicator {
+    position: absolute;
+    top: -8px;
+    right: 10px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease;
+}
+
+/* Animation keyframes */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-5px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(5px);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.8;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    #kick-transcription-overlay {
+        width: 90vw !important;
+        left: 5vw !important;
+        right: 5vw !important;
+    }
+}
+
+@media (max-width: 768px) {
+    #kick-transcription-overlay .transcription-text {
+        font-size: 16px;
+        padding: 15px;
+    }
+}
+
+/* Ensure overlay is always visible */
+#kick-transcription-overlay {
+    display: block !important;
+    visibility: visible !important;
+}
+
+/* Force text to be visible */
+#kick-transcription-overlay .transcription-text {
+    color: white !important;
+    background: rgba(0, 0, 0, 0.9) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Error state styling */
+#kick-transcription-overlay .transcription-text.error {
+    background: rgba(255, 0, 0, 0.9) !important;
+    color: white !important;
+    animation: shake 0.5s ease-in-out;
+}
+
+/* Processing state styling */
+#kick-transcription-overlay .transcription-text.processing {
+    background: rgba(0, 100, 255, 0.9) !important;
+    color: white !important;
+    animation: pulse 1s ease-in-out infinite;
+}
+
+/* Listening state styling */
+#kick-transcription-overlay .transcription-text.listening {
+    background: rgba(0, 150, 0, 0.9) !important;
+    color: white !important;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* Position variants */
+#kick-transcription-overlay.position-top {
+    top: 20px;
+    bottom: auto;
+}
+
+#kick-transcription-overlay.position-center {
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%);
+}
+
+/* Ultra low latency mode optimizations */
+#kick-transcription-overlay.ultra-latency .transcription-text {
+    transition: all 0.1s ease;
+    animation-duration: 0.1s;
+}
+
+/* Performance optimizations */
+#kick-transcription-overlay {
+    will-change: transform, opacity;
+    transform: translateZ(0); /* Force hardware acceleration */
+}
+
+#kick-transcription-overlay .transcription-text {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+}
+
+/* Text formatting for better readability */
+#kick-transcription-overlay .transcription-text {
+    letter-spacing: 0.5px;
+} 

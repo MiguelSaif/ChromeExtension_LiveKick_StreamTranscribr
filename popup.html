@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kick Stream Transcriber</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Kick Stream Transcriber</h1>
+        
+        <div class="section">
+            <h2>API Configuration</h2>
+            <div class="input-group">
+                <label for="elevenlabs-api-key">ElevenLabs API Key:</label>
+                <input type="password" id="elevenlabs-api-key" placeholder="Enter your ElevenLabs API key">
+            </div>
+            <div class="input-group">
+                <label for="kick-api-key">Kick API Key (Optional):</label>
+                <input type="password" id="kick-api-key" placeholder="Enter your Kick API key">
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Latency Settings</h2>
+            <div class="input-group">
+                <label for="latency-mode">Latency Mode:</label>
+                <select id="latency-mode">
+                    <option value="ultra">Ultra Low (0.5-1.5s chunks)</option>
+                    <option value="low">Low (1-3s chunks)</option>
+                    <option value="medium">Medium (2-5s chunks)</option>
+                    <option value="high">High (3-8s chunks)</option>
+                </select>
+            </div>
+            <div class="latency-info">
+                <div class="info-item">
+                    <span class="indicator ultra"></span>
+                    <span>Ultra: Fastest response, higher API usage</span>
+                </div>
+                <div class="info-item">
+                    <span class="indicator low"></span>
+                    <span>Low: Balanced performance (recommended)</span>
+                </div>
+                <div class="info-item">
+                    <span class="indicator medium"></span>
+                    <span>Medium: Lower API usage, slower response</span>
+                </div>
+                <div class="info-item">
+                    <span class="indicator high"></span>
+                    <span>High: Minimal API usage, slowest response</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Transcription Settings</h2>
+            <div class="input-group">
+                <label for="transcription-model">Model:</label>
+                <select id="transcription-model">
+                    <option value="eleven_english_sts_v2">English STS v2 (Optimized for English)</option>
+                    <option value="eleven_multilingual_v2">Multilingual v2 (Fallback)</option>
+                </select>
+            </div>
+            <div class="info-box">
+                <p><strong>Language:</strong> English (Latin text) - Automatically enforced for optimal performance</p>
+                <p><strong>Overlay Size:</strong> 1000px × 250px - Centered on screen</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Display Settings</h2>
+            <div class="input-group">
+                <label for="font-size">Font Size:</label>
+                <input type="range" id="font-size" min="12" max="32" value="18">
+                <span id="font-size-value">18px</span>
+            </div>
+            <div class="input-group">
+                <label for="opacity">Opacity:</label>
+                <input type="range" id="opacity" min="0.1" max="1" step="0.1" value="0.8">
+                <span id="opacity-value">80%</span>
+            </div>
+            <div class="input-group">
+                <label for="position">Position:</label>
+                <select id="position">
+                    <option value="bottom">Bottom</option>
+                    <option value="top">Top</option>
+                    <option value="center">Center</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Controls</h2>
+            <div class="button-group">
+                <button id="start-transcription" class="btn btn-primary">Start Transcription</button>
+                <button id="stop-transcription" class="btn btn-secondary">Stop Transcription</button>
+            </div>
+            <div class="button-group">
+                <button id="save-settings" class="btn btn-success">Save Settings</button>
+                <button id="clear-settings" class="btn btn-danger">Clear Settings</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Status</h2>
+            <div id="status" class="status">Ready</div>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html> 
